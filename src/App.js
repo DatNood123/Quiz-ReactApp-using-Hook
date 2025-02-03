@@ -1,13 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { increaseCounter, decreaseCounter } from './redux/action/counterAction';
+import './App.scss';
+import Header from './components/Header/Header';
+import { Outlet } from 'react-router-dom';
 
 const App = () => {
 
   return (
-    <div className="App">
-      Hello world
+    <div className="app-container">
+      <div className='header-container'>
+        <Header />
+      </div>
+
+      <div className='main-container'>
+        <div className='side-nav-container'>
+
+        </div>
+
+        <div className='app-content'>
+          <Outlet />
+        </div>
+      </div>
+
     </div>
   );
 }
