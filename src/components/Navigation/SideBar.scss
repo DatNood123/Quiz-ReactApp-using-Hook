@@ -1,0 +1,53 @@
+.pro-sidebar {
+    .pro-sidebar-inner {
+        .pro-sidebar-layout {
+            .pro-sidebar-content {
+                .pro-menu {
+                    .pro-menu-item {
+                        .react-slidedown {
+                            background: transparent;
+
+                            .pro-menu-item {
+                                border-bottom: 1px solid rgb(138, 105, 127);
+                                margin-right : 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sidebar-btn-wrapper {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    padding        : 20px 24px;
+
+    .sidebar-btn {
+        transition     : width 0.3s;
+        width          : 150px;
+        padding        : 1px 15px;
+        border-radius  : 40px;
+        background     : rgba(255, 255, 255, 0.05);
+        color          : #adadad;
+        text-decoration: none;
+        margin         : 0 auto;
+        height         : 35px;
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+        text-overflow  : ellipsis;
+        overflow       : hidden;
+
+        span {
+            margin-left: 5px;
+            font-size  : 13px;
+        }
+
+        &:hover {
+            color: rgb(25, 114, 149);
+        }
+    }
+}
