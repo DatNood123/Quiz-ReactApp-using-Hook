@@ -1,0 +1,28 @@
+.admin-container {
+    display: flex;
+
+    .admin-sidebar {
+        .pro-sidebar {
+            height: 100vh;
+        }
+    }
+
+    .admin-content {
+        width: 100%;
+
+        .admin-header {
+            .btn-show-hide {
+                display        : flex;
+                justify-content: center;
+                align-items    : center;
+                height         : 30px;
+                width          : 50px;
+                border         : 2px solid rgb(45, 5, 5);
+                border-radius  : 8px;
+                margin-top     : 10px;
+                margin-left    : 10px;
+                cursor         : pointer;
+            }
+        }
+    }
+}
