@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
+import { postCreateNewUserService } from "../../../services/apiService";
 
-const ModalCreateUser = () => {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+const ModalCreateUser = (props) => {
+    const { show, setShow } = props
+    const handleClose = () => {
+        setShow(false)
+        setEmail("")
+        setPassword("")
+        setUsername("")
+        setRole("USER")
+        setImage("")
+        setPreviewImage("")
+    };
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,12 +30,45 @@ const ModalCreateUser = () => {
         }
     }
 
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
+    const handleSubmitCreateUser = async () => {
+        //validate
+        const isValidEmail = validateEmail(email);
+        if (!isValidEmail) {
+            toast.error("Invalid Email!!!");
+            return
+        }
+
+        if (!password) {
+            toast.error("Invalid Password!!!");
+            return
+        }
+
+        //submit
+        let data = await postCreateNewUserService(email, password, username, role, image);
+        if (data && data.EC === 0) {
+            toast.success(data.EM);
+            handleClose();
+        }
+
+        if (data && data.EC !== 0) {
+            toast.error(data.EM);
+        }
+
+    }
+
     return (
         <>
-            <Button variant='primary' onClick={handleShow}>
+            {/* <Button variant='primary' onClick={handleShow}>
                 Thêm mới
-            </Button>
-
+            </Button> */}
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -103,7 +144,7 @@ const ModalCreateUser = () => {
                         Close
                     </Button>
 
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={() => handleSubmitCreateUser()}>
                         Save
                     </Button>
                 </Modal.Footer>
