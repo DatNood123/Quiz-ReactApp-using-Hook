@@ -71,7 +71,7 @@ const SideBar = (props) => {
                         className="sidebar-btn-wrapper"
                     >
                         <a
-                            href="https://github.com/DatNood123"
+                            href="https://github.com/DatEkko"
                             target="_blank"
                             className="sidebar-btn"
                             rel="noopener noreferrer"
