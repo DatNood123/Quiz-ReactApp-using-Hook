@@ -4,10 +4,12 @@ import { IoPersonAddOutline } from "react-icons/io5";
 import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import { getAllUserService } from '../../../services/apiService';
+import ModalUpdateUser from "./ModalUpdateUser";
 
 const ManageUser = (props) => {
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
-
+    const [showModalUpdateUser, setshowModalUpdateUser] = useState(false);
+    const [dataUpdate, setDataUpdate] = useState({})
     const [listUser, setListUser] = useState([])
 
     // === componentDidMount
@@ -22,6 +24,15 @@ const ManageUser = (props) => {
         }
     }
 
+    const handleClickBtnUpdate = (user) => {
+        setshowModalUpdateUser(true);
+        setDataUpdate(user);
+    }
+
+    const resetUpdateData = () => {
+        setDataUpdate("")
+    }
+
     return (
         <div className="manage-user-container">
             <div className="title">
@@ -34,13 +45,24 @@ const ManageUser = (props) => {
                 </div>
 
                 <div>
-                    <TableUser listUser={listUser} />
+                    <TableUser
+                        listUser={listUser}
+                        handleClickBtnUpdate={handleClickBtnUpdate}
+                    />
                 </div>
 
                 <ModalCreateUser
                     show={showModalCreateUser}
                     setShow={setShowModalCreateUser}
                     fetchListUser={fetchListUser}
+                />
+
+                <ModalUpdateUser
+                    show={showModalUpdateUser}
+                    setShow={setshowModalUpdateUser}
+                    dataUpdate={dataUpdate}
+                    fetchListUser={fetchListUser}
+                    resetUpdateData={resetUpdateData}
                 />
             </div>
         </div>
