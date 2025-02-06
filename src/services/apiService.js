@@ -29,7 +29,12 @@ const deleteUserService = (userID) => {
     return axios.delete('api/v1/participant', { data: { id: userID } });
 }
 
+const getUserWithPaginate = (page, limit) => {
+    return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
+}
+
 export {
     postCreateNewUserService, getAllUserService,
-    putUpdateUserService, deleteUserService
+    putUpdateUserService, deleteUserService,
+    getUserWithPaginate
 }

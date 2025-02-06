@@ -24,5 +24,12 @@
                 cursor         : pointer;
             }
         }
+
+        .admin-main {
+            .user-paginate {
+                display        : flex;
+                justify-content: center;
+            }
+        }
     }
 }
