@@ -10,7 +10,8 @@ import {
     SidebarContent,
 } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { FaTachometerAlt, FaGem, FaGithub, FaRegLaughWink } from 'react-icons/fa';
+import { FaHome, FaGem, FaGithub } from 'react-icons/fa';
+import { IoMdSettings } from "react-icons/io";
 import sidebarBg from '../../assets/bg2.jpg';
 
 const SideBar = (props) => {
@@ -45,6 +46,13 @@ const SideBar = (props) => {
                 <SidebarContent>
                     <Menu iconShape="circle">
                         <MenuItem
+                            icon={<FaHome />}
+                        >
+                            Trang chủ
+                            <Link to='/' />
+                        </MenuItem>
+
+                        <MenuItem
                             icon={<FaGem />}
                         >
                             Dashboard
@@ -53,7 +61,7 @@ const SideBar = (props) => {
 
                         <SubMenu
                             title={"Quản lý"}
-                            icon={<FaRegLaughWink />}
+                            icon={<IoMdSettings />}
                         >
                             <MenuItem>
                                 Quản lý người dùng
