@@ -1,3 +1,13 @@
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
 .login-container {
     height           : 100vh;
     display          : flex;
@@ -38,7 +48,8 @@
 
             span {
                 user-select: none;
-                color      : rgb(0, 0, 0);
+                color      : rgb(255, 255, 255);
+                cursor     : pointer;
             }
 
             .form-group {
@@ -87,10 +98,32 @@
                     border          : none;
                     outline         : none;
                     background-color: rgb(30, 29, 29);
-                    color           : white;
                     border-radius   : 8px;
                     padding         : 8px 0;
                     font-size       : 1.2em;
+                    display         : flex;
+                    justify-content : center;
+                    align-items     : center;
+                    height          : 2.2em;
+
+                    &:disabled {
+                        background: #393535;
+                        cursor    : no-drop;
+
+                        span {
+                            display: none;
+                        }
+                    }
+
+                    span {
+                        color: white;
+                    }
+
+                    .loadingIcon {
+                        font-size: 1.3em;
+                        animation: spin 1.5s infinite linear;
+                        color    : rgb(255, 255, 255);
+                    }
                 }
             }
 
@@ -100,6 +133,7 @@
                 justify-content: center;
                 align-items    : center;
                 gap            : 10px;
+                color          : white;
 
                 button {
                     border          : 3px solid #ffffff;

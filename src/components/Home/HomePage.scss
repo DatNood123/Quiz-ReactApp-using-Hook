@@ -1,11 +1,12 @@
 .homepage-container {
-    padding: 30px;
+    display        : flex;
+    justify-content: center;
 
     .heropage {
         position: absolute;
         top     : 0;
         left    : 0;
-        width   : 100vw;
+        width   : 100%;
         height  : 100vh;
         overflow: hidden;
 
@@ -17,28 +18,33 @@
     }
 
     .homepage-content {
-        margin-left   : 55px;
+        color         : white;
         position      : relative;
-        width         : 40%;
+        width         : 70%;
         padding       : 40px;
-        margin-top    : 35px;
         display       : flex;
         flex-direction: column;
+        align-items   : center;
         gap           : 25px;
 
         .title-content {
-            font-size: 45px;
+            text-align : center;
+            font-size  : 4.5em;
+            font-weight: 800;
         }
 
         .subtitle-content {
-            font-size: 19px;
+            width     : 70%;
+            text-align: justify;
+            font-size : 19px;
         }
 
         .btn-content {
             button {
-                background-color: rgb(50, 44, 44);
-                color           : white;
+                background-color: rgb(249, 253, 255);
+                color           : rgb(1, 14, 87);
                 padding         : 10px 40px;
+                font-weight     : 800;
                 border          : none;
                 outline         : none;
                 border-radius   : 8px;
@@ -46,4 +52,10 @@
         }
     }
 
+}
+
+.box {
+    width : 100%;
+    height: 500px;
+    border: 1px solid red;
 }

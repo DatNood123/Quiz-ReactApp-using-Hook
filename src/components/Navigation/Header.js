@@ -4,9 +4,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Header.scss';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
     const navigate = useNavigate();
+    const isAuthenticated = useSelector(state => state.userAccount.isAuthenticated);
+    const account = useSelector(state => state.userAccount.account);
+    const name = `Hello, ${account.username.toUpperCase()}`;
 
     const handleLogin = () => {
         navigate('./login')
@@ -29,29 +33,32 @@ const Header = () => {
                     </Nav>
 
                     <Nav>
-                        <button
-                            className='btn-login'
-                            onClick={() => handleLogin()}
-                        >
-                            Log In
-                        </button>
-                        <button
-                            className='btn-signup'
-                            onClick={() => handleSignUp()}
-                        >Sign Up</button>
-                        {/* <NavDropdown title="Setting" id="basic-nav-dropdown">
-                            <NavDropdown.Item >
-                                Log in
-                            </NavDropdown.Item>
+                        {isAuthenticated === false ?
+                            <>
+                                <button
+                                    className='btn-login'
+                                    onClick={() => handleLogin()}
+                                >
+                                    Log In
+                                </button>
+                                <button
+                                    className='btn-signup'
+                                    onClick={() => handleSignUp()}
+                                >Sign Up</button>
+                            </>
 
-                            <NavDropdown.Item >
-                                Log out
-                            </NavDropdown.Item>
+                            :
+                            <NavDropdown title={name} id="basic-nav-dropdown">
+                                <NavDropdown.Item >
+                                    Log out
+                                </NavDropdown.Item>
 
-                            <NavDropdown.Item >
-                                Profile
-                            </NavDropdown.Item>
-                        </NavDropdown> */}
+                                <NavDropdown.Item >
+                                    Profile
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        }
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
