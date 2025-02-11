@@ -4,7 +4,7 @@ import { FiUser } from "react-icons/fi";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { BiLeftArrow } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
-import { postLogin } from '../../services/apiService';
+import { postLoginService } from '../../services/apiService';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
@@ -43,7 +43,7 @@ const Login = (props) => {
         //submit
         setIsLoading(true);
 
-        let data = await postLogin(email, password);
+        let data = await postLoginService(email, password);
         if (data && data.EC === 0) {
             dispatch(doLogin(data))
             toast.success(data.EM);

@@ -1,0 +1,30 @@
+.list-quiz-container {
+    background-color: rgb(15, 99, 105);
+    position        : absolute;
+    width           : 100%;
+    top             : 0;
+    padding-top     : 90px;
+    display         : flex;
+    min-height      : 100vh;
+    gap             : 50px;
+    justify-content : center;
+
+    .card {
+        height    : 400px;
+        margin-top: 40px;
+
+        .card-img-top {
+            height: 35%;
+        }
+
+        .card-body {
+            display       : flex;
+            flex-direction: column;
+
+            button {
+                align-self: flex-start;
+                margin-top: auto;
+            }
+        }
+    }
+}
