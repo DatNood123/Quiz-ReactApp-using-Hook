@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { getDataQuizService } from "../../services/apiService";
+import { getDataQuizService, postSubmitQuizService } from "../../services/apiService";
 import './DetailQuiz.scss';
 import _ from 'lodash';
 import Question from "./Question";
+import ModalConfirmSubmit from "./ModalConfirmSubmit";
+import ModalResult from "./ModalResult";
 
 const DetailQuiz = (props) => {
     const params = useParams();
@@ -11,6 +13,10 @@ const DetailQuiz = (props) => {
     const quizId = params.id;
     const [dataQuiz, setDataQuiz] = useState([]);
     const [index, setIndex] = useState(0);
+    const [isShowConfirmModal, setIsShowConfirmModal] = useState(false);
+    const [isShowModalResult, setIsShowModalResult] = useState(false);
+    const [defaultDataQuiz, setDefaultDataQuiz] = useState([]);
+    const [dataResultModal, setDataModalResult] = useState({})
 
     useEffect(() => {
         fetchQuestion();
@@ -39,7 +45,8 @@ const DetailQuiz = (props) => {
                 })
                 .value();
 
-            setDataQuiz(data)
+            setDataQuiz(data);
+            setDefaultDataQuiz(data);
         }
     }
 
@@ -76,7 +83,7 @@ const DetailQuiz = (props) => {
         }
     }
 
-    const handleFinishQuiz = () => {
+    const handleFinishQuiz = async () => {
         let payload = {
             quizId: +quizId,
             answers: []
@@ -101,9 +108,21 @@ const DetailQuiz = (props) => {
             })
 
             payload.answers = answers;
-            console.log("Payload: ", payload)
+        }
+
+        let res = await postSubmitQuizService(payload);
+
+        if (res && res.EC === 0) {
+            setDataQuiz(defaultDataQuiz);
+            setDataModalResult({
+                countCorrect: res.DT.countCorrect,
+                countTotal: res.DT.countTotal,
+                quizData: res.DT.quizData
+            })
+            setIsShowModalResult(true);
         }
     }
+
     return (
         <div className="detail-quiz-container">
             <div className="content-left">
@@ -121,20 +140,34 @@ const DetailQuiz = (props) => {
 
                 <div className="footer">
                     <button
+                        disabled={index === 0}
                         onClick={() => handlePrev()}
-                        className="btn btn-secondary">PREV</button>
+                        className="btn btn-warning">PREV</button>
                     <button
+                        disabled={index === dataQuiz.length - 1}
                         onClick={() => handleNext()}
-                        className="btn btn-primary">NEXT</button>
+                        className="btn btn-success">NEXT</button>
                     <button
-                        onClick={() => handleFinishQuiz()}
-                        className="btn btn-warning">FINISH</button>
+                        onClick={() => setIsShowConfirmModal(true)}
+                        className="btn btn-danger">FINISH</button>
                 </div>
             </div>
 
             <div className="content-right">
                 Bảng điểm
             </div>
+
+            <ModalConfirmSubmit
+                isShowConfirmModal={isShowConfirmModal}
+                setIsShowConfirmModal={setIsShowConfirmModal}
+                handleFinishQuiz={handleFinishQuiz}
+            />
+
+            <ModalResult
+                show={isShowModalResult}
+                setShow={setIsShowModalResult}
+                dataResultModal={dataResultModal}
+            />
         </div>
     )
 }
