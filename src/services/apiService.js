@@ -56,10 +56,25 @@ const getDataQuizService = (id) => {
 const postSubmitQuizService = (data) => {
     return axios.post(`api/v1/quiz-submit`, { ...data })
 }
+
+const postCreateNewQuizService = (description, name, difficulty, image) => {
+    const data = new FormData();
+    data.append('description', description);
+    data.append('name', name);
+    data.append('difficulty', difficulty);
+    data.append('quizImage', image);
+    return axios.post(`api/v1/quiz`, data)
+}
+
+const getAllQuizForAdminService = () => {
+    return axios.get(`api/v1/quiz/all`)
+}
+
 export {
     postCreateNewUserService, getAllUserService,
     putUpdateUserService, deleteUserService,
     getUserWithPaginate, postLoginService, postSignUp,
     getListQuizByUserService, getDataQuizService,
-    postSubmitQuizService
+    postSubmitQuizService, postCreateNewQuizService,
+    getAllQuizForAdminService
 }

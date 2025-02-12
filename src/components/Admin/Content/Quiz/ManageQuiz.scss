@@ -1,0 +1,28 @@
+.quiz-container {
+    padding: 20px;
+
+    .title {
+        font-size     : 2em;
+        font-weight   : 600;
+        text-transform: uppercase;
+    }
+
+    .add-new {
+        margin-top: 20px;
+
+        legend {
+            font-size  : 1.2em;
+            font-weight: 600;
+        }
+    }
+
+    .list-quiz {
+        margin-top: 20px;
+
+        .title-list-table {
+            text-align : center;
+            font-weight: 600;
+            font-size  : 1.5em;
+        }
+    }
+}

@@ -36,7 +36,7 @@ const TableUserPaginate = (props) => {
             </div>
 
 
-            <table className="table table-hover table-dark table-striped table-bordered">
+            <table className="table table-hover table-bordered">
                 <thead>
                     <tr style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                         <th scope="col">ID</th>

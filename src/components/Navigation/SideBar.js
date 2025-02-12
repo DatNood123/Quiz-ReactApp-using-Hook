@@ -64,11 +64,14 @@ const SideBar = (props) => {
                             icon={<IoMdSettings />}
                         >
                             <MenuItem>
-                                Quản lý người dùng
+                                Quản Lý Users
                                 <Link to='/admins/manage-users' />
                             </MenuItem>
-                            <MenuItem>Quản lý câu hỏi</MenuItem>
-                            <MenuItem>Quản lý câu trả lời</MenuItem>
+                            <MenuItem>
+                                Quản Lý Quiz
+                                <Link to='/admins/manage-quizzes' />
+                            </MenuItem>
+                            <MenuItem>Quản Lý Câu Hỏi</MenuItem>
 
                         </SubMenu>
                     </Menu>

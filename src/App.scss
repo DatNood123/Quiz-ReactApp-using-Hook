@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow               : hidden;
 }
 
 @media (min-width: 1250px) {
@@ -17,4 +18,8 @@ body {
   .container.xl {
     max-width: 1300px !important;
   }
+}
+
+.app-container {
+  height: 100vh;
 }

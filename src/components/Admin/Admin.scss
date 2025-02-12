@@ -11,6 +11,8 @@
         width: 100%;
 
         .admin-header {
+            height: 50px;
+
             .btn-show-hide {
                 display        : flex;
                 justify-content: center;
@@ -26,6 +28,8 @@
         }
 
         .admin-main {
+            height: calc(100vh - 50px);
+
             .user-paginate {
                 display        : flex;
                 justify-content: center;
