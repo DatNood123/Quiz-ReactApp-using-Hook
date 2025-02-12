@@ -1,7 +1,6 @@
 import ModalCreateUser from "./ModalCreateUser";
 import './ManageUser.scss';
 import { IoPersonAddOutline } from "react-icons/io5";
-import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import { getAllUserService, getUserWithPaginate } from '../../../services/apiService';
 import ModalUpdateUser from "./ModalUpdateUser";

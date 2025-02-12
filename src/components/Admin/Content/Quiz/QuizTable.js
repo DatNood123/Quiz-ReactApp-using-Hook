@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { getAllQuizForAdminService } from "../../../../services/apiService";
+import ModalEditQuiz from "./ModalEditQuiz";
+import ModalDeleteQuiz from "./ModalDeleteQuiz";
 
 const QuizTable = (props) => {
-    const [listQuizz, setListQuizz] = useState([])
-
-    useEffect(() => {
-        fectchQuiz();
-    }, [])
+    const [listQuizz, setListQuizz] = useState([]);
+    const [isShowEditModal, setIsShowEditModal] = useState(false);
+    const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
+    const [dataEdit, setDataEdit] = useState('');
+    const [dataDelete, setDataDelete] = useState('');
 
     const fectchQuiz = async () => {
         let res = await getAllQuizForAdminService();
@@ -15,9 +17,23 @@ const QuizTable = (props) => {
         }
     }
 
+    useEffect(() => {
+        fectchQuiz()
+    }, [props.refreshListQuiz])
+
+    const handelEditQuiz = (quiz) => {
+        setIsShowEditModal(true);
+        setDataEdit(quiz);
+    }
+
+    const handelDeleteQuiz = (quiz) => {
+        setIsShowDeleteModal(true);
+        setDataDelete(quiz)
+    }
+
     return (
         <>
-            <table class="table table-hover table-bordered mt-3">
+            <table className="table table-hover table-bordered mt-3">
                 <thead>
                     <tr style={{ textAlign: "center" }}>
                         <th scope="col">ID</th>
@@ -31,14 +47,19 @@ const QuizTable = (props) => {
                     {listQuizz && listQuizz.length > 0 &&
                         listQuizz.map((item, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <th style={{ textAlign: "center" }}>{item.id}</th>
                                     <td>{item.name}</td>
                                     <td>{item.description}</td>
                                     <td style={{ textAlign: "center" }}>{item.difficulty}</td>
                                     <td style={{ textAlign: "center" }}>
-                                        <button className="btn btn-warning">Edit</button>
-                                        <button className="btn btn-danger" style={{ marginLeft: "10px" }}>Delete</button>
+                                        <button
+                                            className="btn btn-warning"
+                                            onClick={() => handelEditQuiz(item)}
+                                        >Edit</button>
+                                        <button
+                                            onClick={() => handelDeleteQuiz(item)}
+                                            className="btn btn-danger" style={{ marginLeft: "10px" }}>Delete</button>
                                     </td>
                                 </tr>
                             )
@@ -47,6 +68,20 @@ const QuizTable = (props) => {
 
                 </tbody>
             </table>
+
+            <ModalEditQuiz
+                show={isShowEditModal}
+                setShow={setIsShowEditModal}
+                dataEdit={dataEdit}
+                fectchQuiz={fectchQuiz}
+            />
+
+            <ModalDeleteQuiz
+                show={isShowDeleteModal}
+                setShow={setIsShowDeleteModal}
+                dataDelete={dataDelete}
+                fectchQuiz={fectchQuiz}
+            />
         </>
     )
 }

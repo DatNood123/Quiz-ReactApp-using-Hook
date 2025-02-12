@@ -1,11 +1,12 @@
 import './ManageQuiz.scss';
 import Select from 'react-select';
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { use, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { toast } from "react-toastify";
-import { postCreateNewQuizService } from '../../../../services/apiService';
+import { postCreateNewQuizService, getAllQuizForAdminService } from '../../../../services/apiService';
 import QuizTable from './QuizTable';
 import { Accordion } from 'react-bootstrap';
+import ModalEditQuiz from "./ModalEditQuiz";
 
 const options = [
     { value: 'EASY', label: 'EASY' },
@@ -18,6 +19,7 @@ const ManageQuiz = () => {
     const [description, setDescription] = useState('');
     const [level, setLevel] = useState('EASY');
     const [image, setImage] = useState(null);
+    const [refreshListQuiz, setRefresshListQuiz] = useState(false)
 
     const handeUploadImage = (event) => {
         if (event.target && event.target.files && event.target.files[0]) {
@@ -35,7 +37,8 @@ const ManageQuiz = () => {
             toast.success(res.EM)
             setName('');
             setDescription('');
-            setImage('')
+            setImage('');
+            setRefresshListQuiz(prev => !prev);
         } else {
             toast.error(res.EM)
         }
@@ -117,9 +120,12 @@ const ManageQuiz = () => {
 
             <div className="list-quiz">
                 <div className='title-list-table'>LIST QUIZ</div>
-                <QuizTable />
+                <QuizTable
+                    refreshListQuiz={refreshListQuiz}
+                />
             </div>
         </div>
+
     )
 }
 
