@@ -19,6 +19,8 @@ const ListQuiz = (props) => {
         }
     }
 
+    console.log(arrayQuiz)
+
     return (
         <div className="list-quiz-container">
             {arrayQuiz && arrayQuiz.length > 0 &&

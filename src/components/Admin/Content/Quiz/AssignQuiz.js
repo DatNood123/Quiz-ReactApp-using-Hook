@@ -1,11 +1,14 @@
 import Select from "react-select";
 import './AssignQuiz.scss';
 import { useEffect, useState } from "react";
-import { getAllQuizForAdminService, getAllUserService } from "../../../../services/apiService";
+import { getAllQuizForAdminService, getAllUserService, postAssignQuizToUser } from "../../../../services/apiService";
+import { toast } from "react-toastify";
 
 const AssignQuiz = () => {
     const [listQuiz, setListQuiz] = useState([]);
-    const [listUser, setListUser] = useState([])
+    const [listUser, setListUser] = useState([]);
+    const [selectedQuiz, setSelectedQuiz] = useState('');
+    const [selectedUser, setSelectedUser] = useState('');
 
     const fectchQuiz = async () => {
         let res = await getAllQuizForAdminService();
@@ -38,6 +41,15 @@ const AssignQuiz = () => {
         fectchUser();
     }, [])
 
+    const handleAssign = async () => {
+        let res = await postAssignQuizToUser(selectedQuiz.value, selectedUser.value);
+        if (res && res.EC === 0) {
+            toast.success("Assign Succeed")
+        } else {
+            toast.error(res.EM)
+        }
+    }
+
     return (
         <div className="assign-quiz-container">
             <div className="assign-quiz-content">
@@ -46,6 +58,8 @@ const AssignQuiz = () => {
                     <Select
                         placeholder={"Select Quiz"}
                         options={listQuiz}
+                        defaultValue={selectedQuiz}
+                        onChange={setSelectedQuiz}
                     />
                 </div>
 
@@ -54,12 +68,16 @@ const AssignQuiz = () => {
                     <Select
                         placeholder={"Select User"}
                         options={listUser}
+                        defaultValue={selectedUser}
+                        onChange={setSelectedUser}
                     />
                 </div>
             </div>
 
             <div className="btn-assign">
-                <button>ASSIGN</button>
+                <button
+                    onClick={() => handleAssign()}
+                >ASSIGN</button>
             </div>
         </div>
     )
