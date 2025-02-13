@@ -2,7 +2,7 @@ import App from './App';
 import User from './components/User/User';
 import Admin from './components/Admin/Admin';
 import HomePage from './components/Home/HomePage';
-import ManageUser from './components/Admin/Content/ManageUser';
+import ManageUser from './components/Admin/Content/User/ManageUser';
 import Dashboard from './components/Admin/Content/Dashboard';
 import Login from './components/Auth/Login';
 import { Route, Routes } from 'react-router-dom';

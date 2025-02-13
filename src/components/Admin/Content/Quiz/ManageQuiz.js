@@ -7,6 +7,8 @@ import { postCreateNewQuizService, getAllQuizForAdminService } from '../../../..
 import QuizTable from './QuizTable';
 import { Accordion } from 'react-bootstrap';
 import ModalEditQuiz from "./ModalEditQuiz";
+import UpdateQAQuiz from './UpdateQAQuiz';
+import AssignQuiz from './AssignQuiz';
 
 const options = [
     { value: 'EASY', label: 'EASY' },
@@ -51,7 +53,7 @@ const ManageQuiz = () => {
             </div>
             <Accordion>
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>New Quiz</Accordion.Header>
+                    <Accordion.Header>Create New Quiz</Accordion.Header>
                     <Accordion.Body>
                         <div className="add-new">
                             <fieldset className="border border-3 border-dark rounded-3 p-3">
@@ -114,16 +116,30 @@ const ManageQuiz = () => {
                                 </div>
                             </fieldset>
                         </div>
+
+                        <div className="list-quiz">
+                            <div className='title-list-table'>LIST QUIZ</div>
+                            <QuizTable
+                                refreshListQuiz={refreshListQuiz}
+                            />
+                        </div>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>Update Q&A Quiz</Accordion.Header>
+                    <Accordion.Body>
+                        <UpdateQAQuiz />
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>Assign Quiz for User</Accordion.Header>
+                    <Accordion.Body>
+                        <AssignQuiz />
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
-
-            <div className="list-quiz">
-                <div className='title-list-table'>LIST QUIZ</div>
-                <QuizTable
-                    refreshListQuiz={refreshListQuiz}
-                />
-            </div>
         </div>
 
     )

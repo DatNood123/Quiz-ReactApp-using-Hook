@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Select from "react-select";
-import './Questions.scss';
+import './UpdateQAQuiz.scss';
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdOutlineCreate, MdSaveAlt } from "react-icons/md";
 import { FaRegLightbulb, FaRegTrashAlt } from "react-icons/fa";
@@ -10,7 +10,7 @@ import Lightbox from "react-awesome-lightbox";
 import { toast } from "react-toastify";
 import { getAllQuizForAdminService, postCreateNewQuestionForQuiz, postCreateNewAnswerForQuestion } from "../../../../services/apiService";
 
-const Questions = (props) => {
+const UpdateQAQuiz = (props) => {
 
     const [listQuiz, setListQuiz] = useState([]);
     const [isViewImage, setIsViewImage] = useState(false);
@@ -251,10 +251,6 @@ const Questions = (props) => {
 
     return (
         <div className="questions-container">
-            <div className="title">
-                Manage Questions
-            </div>
-
             <div className="add-new-question">
                 <div className="head-control">
                     <div className="col-6 form-group">
@@ -275,7 +271,7 @@ const Questions = (props) => {
                     <div className="btn-save">
                         <button
                             onClick={() => handleSubmitSaveQuiz()}
-                        >LƯU BÀI QUIZ <MdSaveAlt className="btn-save-icon" /></button>
+                        >LƯU THAY ĐỔI <MdSaveAlt className="btn-save-icon" /></button>
                     </div>
                 </div>
 
@@ -284,7 +280,7 @@ const Questions = (props) => {
                         return (
                             <div key={question.id} className="each-question">
                                 <fieldset className="border border-2 border-dark rounded-3 p-3">
-                                    <legend className="float-none w-auto px-3">Create New Question: {index + 1}</legend>
+                                    <legend className="float-none w-auto px-3">Question: {index + 1}</legend>
 
                                     <div className="question-content">
                                         <div className="question-answer">
@@ -397,4 +393,4 @@ const Questions = (props) => {
     )
 }
 
-export default Questions;
+export default UpdateQAQuiz;

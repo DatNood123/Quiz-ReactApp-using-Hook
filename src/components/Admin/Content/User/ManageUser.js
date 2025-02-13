@@ -1,10 +1,10 @@
-import ModalCreateUser from "./ModalCreateUser";
 import './ManageUser.scss';
 import { IoPersonAddOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import { getAllUserService, getUserWithPaginate } from '../../../services/apiService';
+import { getAllUserService, getUserWithPaginate } from '../../../../services/apiService';
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalDeleteUser from "./ModalDeleteUser";
+import ModalCreateUser from "./ModalCreateUser";
 import TableUserPaginate from "./TableUserPaginate";
 
 const ManageUser = (props) => {
