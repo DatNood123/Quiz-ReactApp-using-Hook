@@ -13,7 +13,9 @@ import ListQuiz from './components/User/ListQuiz';
 import DetailQuiz from './components/User/DetailQuiz';
 import ManageQuiz from './components/Admin/Content/Quiz/ManageQuiz';
 import Questions from './components/Admin/Content/Question/Questions';
-
+import { useSelector } from 'react-redux';
+import PrivateRoute from './routes/PrivateRoute';
+import { AnimatePresence } from "framer-motion";
 
 const NotFound = () => {
     return (
@@ -24,46 +26,59 @@ const NotFound = () => {
 }
 
 const Layout = () => {
+    const isAuthenticated = useSelector(state => state.userAccount.isAuthenticated);
+    const account = useSelector(state => state.userAccount.account);
     return (
         <>
-            <Routes>
-                <Route path='/' element={<App />}>
-                    <Route index element={<HomePage />}></Route>
-                    <Route path='/users' element={<ListQuiz />}></Route>
-                </Route>
+            <AnimatePresence mode="wait">
+                <Routes>
+                    <Route path='/' element={<App />}>
+                        <Route index element={<HomePage />}></Route>
+                        <Route path='/users' element={
+                            <PrivateRoute> <ListQuiz /> </PrivateRoute>
+                        }>
 
-                <Route path='/quiz/:id' element={<DetailQuiz />}></Route>
+                        </Route>
+                    </Route>
 
-                <Route path='/admins' element={<Admin />}>
-                    <Route index element={<Dashboard />}></Route>
-                    <Route path='manage-users' element={<ManageUser />}></Route>
-                    <Route path='manage-quizzes' element={<ManageQuiz />}></Route>
-                    <Route path='manage-questions' element={<Questions />}></Route>
-                </Route>
+                    <Route path='/quiz/:id' element={<DetailQuiz />}></Route>
 
-                <Route path='/login' element={<Login />}>
-                </Route>
+                    {account.role === 'ADMIN' ?
+                        <Route path='/admins' element={<Admin />}>
+                            <Route index element={<Dashboard />}></Route>
+                            <Route path='manage-users' element={<ManageUser />}></Route>
+                            <Route path='manage-quizzes' element={<ManageQuiz />}></Route>
+                            <Route path='manage-questions' element={<Questions />}></Route>
+                        </Route>
+                        :
+                        ''
+                    }
 
-                <Route path='/register' element={<SignUp />}>
-                </Route>
+                    <Route path='/login' element={<Login />}>
+                    </Route>
 
-                <Route path='*' element={<NotFound />}>
-                </Route>
-            </Routes>
+                    <Route path='/register' element={<SignUp />}>
+                    </Route>
 
-            <ToastContainer
-                position="top-right"
-                autoClose={2000}
-                hideProgressBar={false}
-                newesOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark"
-            />
+                    <Route path='*' element={<NotFound />}>
+                    </Route>
+                </Routes>
+
+                <ToastContainer
+                    position="top-right"
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newesOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
+            </AnimatePresence>
         </>
+
     )
 }
 

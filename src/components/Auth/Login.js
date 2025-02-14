@@ -57,6 +57,12 @@ const Login = (props) => {
         }
     }
 
+    const handleKeyDown = (event) => {
+        if (event && event.key === "Enter") {
+            handleLogin();
+        }
+    }
+
     return (
         <div className="login-container">
             <div className='title col-4'>
@@ -92,6 +98,7 @@ const Login = (props) => {
                                 placeholder='Password'
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
+                                onKeyDown={(event) => handleKeyDown(event)}
                             />
                             <Icon
                                 className='icon-password'
