@@ -6,8 +6,10 @@ import _ from 'lodash';
 import Question from "./Question";
 import ModalConfirmSubmit from "./ModalConfirmSubmit";
 import ModalResult from "./ModalResult";
+import QuestionOverview from "./QuestionOverview";
 
 const DetailQuiz = (props) => {
+    const [isFinish, setIsFinish] = useState(false)
     const params = useParams();
     const location = useLocation();
     const quizId = params.id;
@@ -120,6 +122,7 @@ const DetailQuiz = (props) => {
                 quizData: res.DT.quizData
             })
             setIsShowModalResult(true);
+            setIsFinish(true)
         }
     }
 
@@ -154,7 +157,12 @@ const DetailQuiz = (props) => {
             </div>
 
             <div className="content-right">
-                Bảng điểm
+                <QuestionOverview
+                    dataQuiz={dataQuiz}
+                    handleFinishQuiz={handleFinishQuiz}
+                    isFinish={isFinish}
+                    setIndex={setIndex}
+                />
             </div>
 
             <ModalConfirmSubmit
