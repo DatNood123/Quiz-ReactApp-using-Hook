@@ -10,9 +10,7 @@ import Lightbox from "react-awesome-lightbox";
 import { toast } from "react-toastify";
 import {
     getAllQuizForAdminService,
-    postCreateNewQuestionForQuiz,
-    postCreateNewAnswerForQuestion,
-    getQuizWithQA
+    getQuizWithQA, postUpsertQA
 } from "../../../../services/apiService";
 
 const UpdateQAQuiz = (props) => {
@@ -266,25 +264,31 @@ const UpdateQAQuiz = (props) => {
         }
 
         //create question
-        for (const question of questions) {
-            const q = await postCreateNewQuestionForQuiz(
-                +selectedQuiz.value,
-                question.description,
-                question.imageFile,
-            );
-
-            //create answer
-            for (const answer of question.answers) {
-                await postCreateNewAnswerForQuestion(
-                    answer.description,
-                    answer.isCorrect,
-                    q.DT.id
-                )
+        let questionClone = _.cloneDeep(questions);
+        for (let i = 0; i < questionClone.length; i++) {
+            if (questionClone[i].imageFile) {
+                questionClone[i].imageFile = await toBase64(questionClone[i].imageFile);
             }
         }
 
-        toast.success("Create A New Question Succeed!!!")
-        setQuestions(initQuestion);
+        let res = await postUpsertQA({
+            quizId: selectedQuiz.value,
+            questions: questionClone
+        });
+
+        if (res && res.EC === 0) {
+            toast.success("Update Question Succeed!!!");
+            fetchQuizWithQA();
+        }
+    }
+
+    const toBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
     }
 
     return (

@@ -127,7 +127,7 @@ const DetailQuiz = (props) => {
         <div className="detail-quiz-container">
             <div className="content-left">
                 <div className="quiz-title">
-                    Quiz {quizId}: {location?.state?.quizTitle}
+                    Quiz: {location?.state?.quizTitle}
                 </div>
                 <hr></hr>
 
