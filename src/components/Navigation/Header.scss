@@ -29,6 +29,10 @@
                     color: white;
                 }
 
+                #language-nav-dropdown {
+                    color: white;
+                }
+
                 .btn-signup {
                     background-color: rgb(38, 29, 29);
                     color           : white;
@@ -41,6 +45,8 @@
                     transition      : transform 0.3s ease-in;
                     will-change     : transform;
                     height          : 40px;
+                    width           : 120px;
+                    font-weight     : 600;
 
                     &:hover {
                         transform: scale(1.1);
@@ -48,7 +54,9 @@
                 }
 
                 .btn-login {
-                    border       : 2px solid black;
+                    font-weight  : 600;
+                    width        : 120px;
+                    border       : 3px solid rgb(255, 119, 0);
                     border-radius: 10px;
                     padding      : 0 20px;
                     outline      : none;

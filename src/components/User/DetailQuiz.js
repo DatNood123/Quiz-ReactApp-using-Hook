@@ -43,6 +43,9 @@ const DetailQuiz = (props) => {
                         item.answers.isSelected = false;
                         answers.push(item.answers);
                     })
+
+                    answers = _.orderBy(answers, ['id', 'asc']);
+
                     return { questionId: key, answers, questionDescription, image }
                 })
                 .value();

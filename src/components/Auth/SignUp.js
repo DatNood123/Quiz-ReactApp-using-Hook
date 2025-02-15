@@ -6,6 +6,8 @@ import { BiLeftArrow } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
 import { postSignUp } from '../../services/apiService';
 import { toast } from 'react-toastify';
+import Language from '../Navigation/Language';
+import { useTranslation, Trans } from 'react-i18next';
 
 const SignUp = (props) => {
     const [email, setEmail] = useState("");
@@ -13,7 +15,7 @@ const SignUp = (props) => {
     const [userName, setUserName] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const Icon = showPassword === true ? HiOutlineEyeOff : HiOutlineEye;
-
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     const validateEmail = (email) => {
@@ -53,15 +55,27 @@ const SignUp = (props) => {
         }
     }
 
+    const handleKeyDown = (event) => {
+        if (event && event.key === "Enter") {
+            handleSignUp();
+        }
+    }
+
     return (
         <div className="sign-up-container">
+            <div className='signup-header'>
+                <span style={{ textAlign: "center" }}> {t('signIn.hasAccount')} </span>
+                <button onClick={() => navigate("/login")}>{t('signIn.signin')}</button>
+                <Language />
+            </div>
+
             <div className='title col-4'>
                 QUIZZAT
             </div>
 
             <div className='content-form col-4'>
                 <div className='header'>
-                    SIGN UP
+                    {t('signIn.signUp')}
                 </div>
 
                 <div className='form-content'>
@@ -85,7 +99,7 @@ const SignUp = (props) => {
                             <input
                                 type={showPassword === false ? 'password' : 'text'}
                                 className='form-control'
-                                placeholder='Password'
+                                placeholder={t('signIn.password')}
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                             />
@@ -101,23 +115,20 @@ const SignUp = (props) => {
                             <input
                                 type={'text'}
                                 className='form-control'
-                                placeholder='Username'
+                                placeholder={t('signIn.username')}
                                 value={userName}
                                 onChange={(event) => setUserName(event.target.value)}
+                                onKeyDown={(event) => handleKeyDown(event)}
                             />
                         </div>
                     </div>
 
                     <div className='btn-sign-up'>
-                        <button onClick={() => handleSignUp()}>Sign Up</button>
+                        <button onClick={() => handleSignUp()}>{t('signIn.register')}</button>
                     </div>
 
-                    <div className='btn-sign-in'>
-                        <div className='back-to-home' onClick={() => { navigate("/") }}>
-                            <BiLeftArrow /> Back to home
-                        </div>
-                        Or
-                        <button onClick={() => navigate("/login")}>Sign In</button>
+                    <div className='back-to-home' onClick={() => { navigate("/") }}>
+                        <BiLeftArrow /> {t('signIn.toHome')}
                     </div>
                 </div>
             </div>

@@ -9,6 +9,8 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
 import { ImSpinner4 } from "react-icons/im";
+import Language from '../Navigation/Language';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
@@ -18,6 +20,7 @@ const Login = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { t } = useTranslation();
 
     const validateEmail = (email) => {
         return String(email)
@@ -64,14 +67,20 @@ const Login = (props) => {
     }
 
     return (
+
         <div className="login-container">
+            <div className='login-header'>
+                <span style={{ textAlign: "center" }}> {t('signIn.noAccount')} </span>
+                <button onClick={() => navigate("/register")}>{t('signIn.signup')}</button>
+                <Language />
+            </div>
             <div className='title col-4'>
                 QUIZZAT
             </div>
 
             <div className='content-form col-4'>
                 <div className='header'>
-                    SIGN IN
+                    {t('signIn.signIn')}
                 </div>
 
                 <div className='form-content'>
@@ -95,7 +104,7 @@ const Login = (props) => {
                             <input
                                 type={showPassword === false ? 'password' : 'text'}
                                 className='form-control'
-                                placeholder='Password'
+                                placeholder={t('signIn.password')}
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                                 onKeyDown={(event) => handleKeyDown(event)}
@@ -107,26 +116,20 @@ const Login = (props) => {
                         </div>
                     </div>
 
-                    <span>Forgot password?</span>
+                    <span>{t('signIn.forgot')}</span>
 
                     <div className='btn-login'>
                         <button
                             onClick={() => handleLogin()}
                             disabled={isLoading}
                         >
-                            <span>Sign In</span>
+                            <span>{t('signIn.login')}</span>
                             {isLoading === true && <ImSpinner4 className='loadingIcon' />};
                         </button>
                     </div>
 
-                    <span style={{ textAlign: "center" }}> Don't have account? </span>
-
-                    <div className='btn-sign-up'>
-                        <div className='back-to-home' onClick={() => { navigate("/") }}>
-                            <BiLeftArrow /> Back to home
-                        </div>
-                        Or
-                        <button onClick={() => navigate("/register")}>Sign Up</button>
+                    <div className='back-to-home' onClick={() => { navigate("/") }}>
+                        <BiLeftArrow /> {t('signIn.toHome')}
                     </div>
                 </div>
             </div>

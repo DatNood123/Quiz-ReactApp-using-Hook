@@ -3,10 +3,13 @@ import './HomePage.scss';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PageTransition from '../../routes/PageTransition';
+import { useTranslation, Trans } from 'react-i18next';
 
 const HomePage = (props) => {
     const isAuthenticated = useSelector(state => state.userAccount.isAuthenticated);
     const navigate = useNavigate();
+    const { t } = useTranslation();
+
     return (
         <>
             <PageTransition>
@@ -22,25 +25,22 @@ const HomePage = (props) => {
 
                     <div className='homepage-content'>
                         <div className='title-content'>
-                            Think you're smart? <br></br>
-                            Prove it... or guess again!
+                            {t('homepage.title1')} <br></br>
+                            {t('homepage.title2')}
                         </div>
 
                         <div className='subtitle-content'>
-                            Dive into our ultimate quiz challenge
-                            where only the sharpest minds survive!
-                            Think fast, choose wisely, and see if you have what
-                            it takes to outsmart the game. Are you a genius or just lucky?
+                            {t('homepage.title3')}
                         </div>
 
                         <div className='btn-content'>
                             {isAuthenticated === false ?
                                 <button onClick={() => navigate('/login')}>
-                                    Let's Find Out!
+                                    {t('homepage.started')}
                                 </button>
                                 :
                                 <button onClick={() => navigate('/users')}>
-                                    Doing Quiz Now
+                                    {t('homepage.doQuiz')}
                                 </button>
                             }
 

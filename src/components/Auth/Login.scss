@@ -17,11 +17,37 @@
     background-size  : cover;
     background-repeat: no-repeat;
 
+    .login-header {
+        text-align : center;
+        display    : flex;
+        margin-left: auto;
+        padding    : 20px 120px 0 0;
+        align-items: center;
+        gap        : 10px;
+        color      : white;
+
+        button {
+            background-color: #393535;
+            border          : 3px solid #ffffff;
+            outline         : none;
+            border-radius   : 8px;
+            padding         : 8px 16px;
+            font-size       : 1em;
+            color           : white;
+            margin-right    : 20px;
+            transition      : transform 0.4s ease;
+            will-change     : transform;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
     .title {
         font-size    : 5em;
         font-weight  : 800;
         text-align   : center;
-        margin-top   : 20px;
         margin-bottom: 20px;
         color        : white;
     }
@@ -96,16 +122,15 @@
             .btn-login {
                 button {
                     width           : 100%;
-                    border          : none;
+                    border          : 3px solid white;
                     outline         : none;
                     background-color: rgb(30, 29, 29);
                     border-radius   : 8px;
-                    padding         : 8px 0;
+                    padding         : 10px 0;
                     font-size       : 1.2em;
                     display         : flex;
                     justify-content : center;
                     align-items     : center;
-                    height          : 2.2em;
 
                     &:disabled {
                         background: #393535;
@@ -128,32 +153,14 @@
                 }
             }
 
-            .btn-sign-up {
-                text-align     : center;
+            .back-to-home {
+                color          : rgb(255, 255, 255);
+                font-weight    : 600;
                 display        : flex;
-                justify-content: center;
                 align-items    : center;
-                gap            : 10px;
-                color          : white;
-
-                button {
-                    border          : 3px solid #ffffff;
-                    outline         : none;
-                    background-color: transparent;
-                    border-radius   : 8px;
-                    padding         : 8px 16px;
-                    font-size       : 1em;
-                    color           : white;
-                }
-
-                .back-to-home {
-                    color      : rgb(255, 255, 255);
-                    font-weight: 600;
-                    display    : flex;
-                    align-items: center;
-                    gap        : 5px;
-                    cursor     : pointer;
-                }
+                justify-content: center;
+                gap            : 5px;
+                cursor         : pointer;
             }
         }
     }

@@ -3,9 +3,11 @@ import { getListQuizByUserService } from "../../services/apiService";
 import './ListQuiz.scss';
 import { useNavigate } from "react-router-dom";
 import PageTransition from "../../routes/PageTransition";
+import { useTranslation, Trans } from 'react-i18next';
 
 const ListQuiz = (props) => {
     const [arrayQuiz, setArrayQuiz] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         getQuizData();
@@ -29,12 +31,12 @@ const ListQuiz = (props) => {
                             <div key={index} className="card" style={{ width: "18rem" }}>
                                 <img src={`data:image/jpeg;base64,${item.image}`} className="card-img-top" />
                                 <div className="card-body">
-                                    <h5 className="card-title">Quiz {index + 1}</h5>
+                                    <h5 className="card-title">{t('quiz.quiz')} {index + 1}</h5>
                                     <p className="card-text">{item.description}</p>
                                     <button
                                         className="btn btn-primary"
                                         onClick={() => navigate(`/quiz/${item.id}`, { state: { quizTitle: item.description } })}
-                                    >Start Now</button>
+                                    >{t('quiz.start')}</button>
                                 </div>
                             </div>
                         )
@@ -42,7 +44,7 @@ const ListQuiz = (props) => {
                 }
 
                 {arrayQuiz && arrayQuiz.length === 0 &&
-                    <div style={{ color: "white", textTransform: "uppercase" }}>You don't have any quiz now</div>
+                    <div style={{ color: "white", textTransform: "uppercase" }}>{t('quiz.noQuiz')}</div>
                 }
 
             </div>

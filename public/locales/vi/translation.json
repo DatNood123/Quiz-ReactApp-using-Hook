@@ -1,0 +1,50 @@
+{
+    "homepage": {
+        "title1": "Bạn nghĩ mình thông minh?",
+        "title2": "Chứng minh đi!",
+        "title3": "Tham gia thử thách đố vui đỉnh cao của chúng tôi, nơi chỉ những bộ óc nhạy bén nhất mới có thể trụ vững! Suy nghĩ nhanh, lựa chọn khôn ngoan và xem liệu bạn có đủ khả năng để vượt qua trò chơi hay không. Bạn là thiên tài hay chỉ đơn giản là may mắn?",
+        "started": "Tìm hiểu ngay!",
+        "doQuiz": "Làm liền luôn!"
+    },
+    "header": {
+        "homepage": "Trang chủ",
+        "quiz" : "Bài thi",
+        "signIn" : "Đăng nhập",
+        "signUp" : "Đăng ký",
+        "management" : "Quản lý",
+        "profile" : "Tài khoản",
+        "logOut" : "Đăng xuất"
+    },
+
+    "signIn" : {
+        "signIn" : "Đăng Nhập",
+        "signin" : "Đăng nhập",
+        "password" : "Mật khẩu",
+        "forgot" : "Quên mật khẩu?",
+        "login" : "Triển ngay",
+        "toHome" : "Về trang chủ",
+        "signUp" : "Đăng Ký",
+        "signup" : "Đăng ký",
+        "noAccount" : "Hong có tài khoản hả?",
+        "hasAccount" : "Có tài khoản rồi hả?",
+        "username" : "Tên người dùng",
+        "register" : "Tham gia"
+    },
+
+    "sideBar": {
+        "homepage" : "Trang Chủ",
+        "management" : "Quản Lý",
+        "user" : "Quản lý người dùng",
+        "quiz" : "Quản lý bài thi",
+        "question" : "Quản lý câu hỏi",
+        "dashBoard" : "Bảng Thống Kê"
+    },
+
+    "quiz" : {
+        "start" : "Bắt đầu",
+        "quiz" : "Bài thi số",
+        "noQuiz" : "Hiện tại, bạn không có bài thi nào"
+    }
+
+    
+}

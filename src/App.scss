@@ -20,6 +20,12 @@ body {
   }
 }
 
+.change-language {
+  .dropdown-toggle::after {
+    display: none !important;
+  }
+}
+
 .app-container {
   height: 100vh;
 }

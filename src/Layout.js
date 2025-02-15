@@ -1,9 +1,8 @@
 import App from './App';
-import User from './components/User/User';
 import Admin from './components/Admin/Admin';
 import HomePage from './components/Home/HomePage';
 import ManageUser from './components/Admin/Content/User/ManageUser';
-import Dashboard from './components/Admin/Content/Dashboard';
+import Dashboard from './components/Admin/Content/Dashboard/Dashboard';
 import Login from './components/Auth/Login';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
@@ -16,6 +15,7 @@ import Questions from './components/Admin/Content/Question/Questions';
 import { useSelector } from 'react-redux';
 import PrivateRoute from './routes/PrivateRoute';
 import { AnimatePresence } from "framer-motion";
+import { Suspense } from 'react';
 
 const NotFound = () => {
     return (
@@ -29,7 +29,7 @@ const Layout = () => {
     const isAuthenticated = useSelector(state => state.userAccount.isAuthenticated);
     const account = useSelector(state => state.userAccount.account);
     return (
-        <>
+        <Suspense fallback={<div>...is loading</div>}>
             <AnimatePresence mode="wait">
                 <Routes>
                     <Route path='/' element={<App />}>
@@ -77,7 +77,7 @@ const Layout = () => {
                     theme="dark"
                 />
             </AnimatePresence>
-        </>
+        </Suspense>
 
     )
 }
