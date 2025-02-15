@@ -5,7 +5,7 @@ import ManageUser from './components/Admin/Content/User/ManageUser';
 import Dashboard from './components/Admin/Content/Dashboard/Dashboard';
 import Login from './components/Auth/Login';
 import { Route, Routes } from 'react-router-dom';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SignUp from './components/Auth/SignUp';
 import ListQuiz from './components/User/ListQuiz';
@@ -26,12 +26,11 @@ const NotFound = () => {
 }
 
 const Layout = () => {
-    const isAuthenticated = useSelector(state => state.userAccount.isAuthenticated);
     const account = useSelector(state => state.userAccount.account);
     return (
         <Suspense fallback={<div>...is loading</div>}>
-            <AnimatePresence mode="wait">
-                <Routes>
+            <AnimatePresence mode="sync">
+                <Routes key={99}>
                     <Route path='/' element={<App />}>
                         <Route index element={<HomePage />}></Route>
                         <Route path='/users' element={
@@ -43,7 +42,7 @@ const Layout = () => {
 
                     <Route path='/quiz/:id' element={<DetailQuiz />}></Route>
 
-                    {account.role === 'ADMIN' ?
+                    {account?.role === 'ADMIN' ?
                         <Route path='/admins' element={<Admin />}>
                             <Route index element={<Dashboard />}></Route>
                             <Route path='manage-users' element={<ManageUser />}></Route>

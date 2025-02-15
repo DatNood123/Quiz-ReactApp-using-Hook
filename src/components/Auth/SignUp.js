@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { postSignUp } from '../../services/apiService';
 import { toast } from 'react-toastify';
 import Language from '../Navigation/Language';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const SignUp = (props) => {
     const [email, setEmail] = useState("");

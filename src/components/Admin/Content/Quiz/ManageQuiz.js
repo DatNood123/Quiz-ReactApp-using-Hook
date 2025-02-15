@@ -1,12 +1,11 @@
 import './ManageQuiz.scss';
 import Select from 'react-select';
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { use, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from "react-toastify";
-import { postCreateNewQuizService, getAllQuizForAdminService } from '../../../../services/apiService';
+import { postCreateNewQuizService } from '../../../../services/apiService';
 import QuizTable from './QuizTable';
 import { Accordion } from 'react-bootstrap';
-import ModalEditQuiz from "./ModalEditQuiz";
 import UpdateQAQuiz from './UpdateQAQuiz';
 import AssignQuiz from './AssignQuiz';
 

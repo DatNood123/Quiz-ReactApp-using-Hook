@@ -83,7 +83,7 @@ const UpdateQAQuiz = (props) => {
             for (let i = 0; i < res.DT.qa.length; i++) {
                 let question = res.DT.qa[i];
                 if (question.imageFile) {
-                    question.imageFile = await urltoFile(`data:image/png;base64,${question.imageFile}`, `Question_${question.id}.png`, 'imaga/png');
+                    question.imageFile = await urltoFile(`data:image/png;base64,${question.imageFile}`, `Question_${question.id}.png`, 'image/png');
                     question.previewImage = URL.createObjectURL(question.imageFile)
                 }
 
@@ -396,6 +396,7 @@ const UpdateQAQuiz = (props) => {
                                                 <div className="img-preview">
                                                     {question.previewImage ?
                                                         <img
+                                                            alt=""
                                                             onClick={() => handlePreviewImage(question.id)}
                                                             src={question.previewImage} />
                                                         :

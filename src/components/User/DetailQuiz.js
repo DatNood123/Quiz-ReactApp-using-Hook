@@ -9,7 +9,7 @@ import ModalResult from "./ModalResult";
 import QuestionOverview from "./QuestionOverview";
 import { Breadcrumb } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 
 const DetailQuiz = (props) => {

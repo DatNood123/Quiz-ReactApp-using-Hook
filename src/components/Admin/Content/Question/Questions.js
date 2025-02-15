@@ -358,6 +358,7 @@ const Questions = (props) => {
                                                 <div className="img-preview">
                                                     {question.previewImage ?
                                                         <img
+                                                            alt=""
                                                             onClick={() => handlePreviewImage(question.id)}
                                                             src={question.previewImage} />
                                                         :

@@ -3,7 +3,7 @@ import './HomePage.scss';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PageTransition from '../../routes/PageTransition';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const HomePage = (props) => {
     const isAuthenticated = useSelector(state => state.userAccount.isAuthenticated);
@@ -12,7 +12,7 @@ const HomePage = (props) => {
 
     return (
         <>
-            <PageTransition>
+            <PageTransition key={0}>
                 <div className="homepage-container">
                     <div className='heropage'>
                         <video autoPlay muted loop>

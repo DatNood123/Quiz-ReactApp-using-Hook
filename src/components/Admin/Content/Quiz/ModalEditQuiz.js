@@ -109,7 +109,7 @@ const ModalEditQuiz = (props) => {
 
                         <div className="col-md-12 img-preview">
                             {previewImage ?
-                                <img src={previewImage} />
+                                <img src={previewImage} alt="" />
                                 :
                                 <span>Preview Image</span>
                             }

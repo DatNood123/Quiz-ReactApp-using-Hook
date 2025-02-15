@@ -123,6 +123,14 @@ const getOverview = () => {
     return axios.get(`api/v1/overview`)
 }
 
+const postUpdateProfile = (username, userImage) => {
+    const data = new FormData();
+    data.append('username', username);
+    data.append('userImage', userImage);
+
+    return axios.post(`api/v1/profile`, data)
+}
+
 export {
     postCreateNewUserService, getAllUserService,
     putUpdateUserService, deleteUserService,
@@ -132,5 +140,6 @@ export {
     getAllQuizForAdminService, putEditQuizService,
     deleteQuizService, postCreateNewQuestionForQuiz,
     postCreateNewAnswerForQuestion, postAssignQuizToUser,
-    getQuizWithQA, postUpsertQA, doLogOut, getOverview
+    getQuizWithQA, postUpsertQA, doLogOut, getOverview,
+    postUpdateProfile
 }

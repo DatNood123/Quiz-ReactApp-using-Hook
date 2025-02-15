@@ -13,11 +13,11 @@ import { Link } from 'react-router-dom';
 import { FaHome, FaGem, FaGithub } from 'react-icons/fa';
 import { IoMdSettings } from "react-icons/io";
 import sidebarBg from '../../assets/bg2.jpg';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const SideBar = (props) => {
     const { t } = useTranslation();
-    const { image, collapsed, rtl, toggled, handleToggleSidebar } = props;
+    const { collapsed, toggled, handleToggleSidebar } = props;
     return (
         <>
             <ProSidebar

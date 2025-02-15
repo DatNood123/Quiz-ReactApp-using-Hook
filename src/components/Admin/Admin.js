@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 import PerfectScrollBar from 'react-perfect-scrollbar';
 import Language from '../Navigation/Language';
 import { NavDropdown } from "react-bootstrap";
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { doLogOut } from "../../services/apiService";
 import { doLogout } from "../../redux/action/userAction";
 import { toast } from "react-toastify";

@@ -3,7 +3,7 @@ import { getListQuizByUserService } from "../../services/apiService";
 import './ListQuiz.scss';
 import { useNavigate } from "react-router-dom";
 import PageTransition from "../../routes/PageTransition";
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const ListQuiz = (props) => {
     const [arrayQuiz, setArrayQuiz] = useState([]);
@@ -23,13 +23,13 @@ const ListQuiz = (props) => {
     }
 
     return (
-        <PageTransition>
+        <PageTransition key={1}>
             <div className="list-quiz-container">
                 {arrayQuiz && arrayQuiz.length > 0 &&
                     arrayQuiz.map((item, index) => {
                         return (
                             <div key={index} className="card" style={{ width: "18rem" }}>
-                                <img src={`data:image/jpeg;base64,${item.image}`} className="card-img-top" />
+                                <img src={`data:image/jpeg;base64,${item.image}`} className="card-img-top" alt="" />
                                 <div className="card-body">
                                     <h5 className="card-title">{t('quiz.quiz')} {index + 1}</h5>
                                     <p className="card-text">{item.description}</p>

@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
 import { ImSpinner4 } from "react-icons/im";
 import Language from '../Navigation/Language';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
