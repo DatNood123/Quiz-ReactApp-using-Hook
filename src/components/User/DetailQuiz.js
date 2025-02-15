@@ -7,6 +7,10 @@ import Question from "./Question";
 import ModalConfirmSubmit from "./ModalConfirmSubmit";
 import ModalResult from "./ModalResult";
 import QuestionOverview from "./QuestionOverview";
+import { Breadcrumb } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useTranslation, Trans } from 'react-i18next';
+
 
 const DetailQuiz = (props) => {
     const [isFinish, setIsFinish] = useState(false)
@@ -18,7 +22,9 @@ const DetailQuiz = (props) => {
     const [isShowConfirmModal, setIsShowConfirmModal] = useState(false);
     const [isShowModalResult, setIsShowModalResult] = useState(false);
     const [defaultDataQuiz, setDefaultDataQuiz] = useState([]);
-    const [dataResultModal, setDataModalResult] = useState({})
+    const [dataResultModal, setDataModalResult] = useState({});
+    const navigate = useNavigate();
+    const { t } = useTranslation();
 
     useEffect(() => {
         fetchQuestion();
@@ -131,41 +137,58 @@ const DetailQuiz = (props) => {
 
     return (
         <div className="detail-quiz-container">
-            <div className="content-left">
-                <div className="quiz-title">
-                    Quiz: {location?.state?.quizTitle}
-                </div>
-                <hr></hr>
-
-                <div className="quiz-content">
-                    <Question
-                        handleCheckbox={handleCheckbox}
-                        index={index}
-                        data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []} />
-                </div>
-
-                <div className="footer">
-                    <button
-                        disabled={index === 0}
-                        onClick={() => handlePrev()}
-                        className="btn btn-warning">PREV</button>
-                    <button
-                        disabled={index === dataQuiz.length - 1}
-                        onClick={() => handleNext()}
-                        className="btn btn-success">NEXT</button>
-                    <button
-                        onClick={() => setIsShowConfirmModal(true)}
-                        className="btn btn-danger">FINISH</button>
-                </div>
+            <div className="navigate">
+                <Breadcrumb>
+                    <Breadcrumb.Item
+                        onClick={() => navigate('/')}
+                    >
+                        {t('header.homepage')}
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item
+                        onClick={() => navigate('/users')}
+                    >
+                        {t('header.quiz')}
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item active>{location?.state?.quizTitle}</Breadcrumb.Item>
+                </Breadcrumb>
             </div>
+            <div className="content">
+                <div className="content-left">
+                    <div className="quiz-title">
+                        Quiz: {location?.state?.quizTitle}
+                    </div>
+                    <hr></hr>
 
-            <div className="content-right">
-                <QuestionOverview
-                    dataQuiz={dataQuiz}
-                    handleFinishQuiz={handleFinishQuiz}
-                    isFinish={isFinish}
-                    setIndex={setIndex}
-                />
+                    <div className="quiz-content">
+                        <Question
+                            handleCheckbox={handleCheckbox}
+                            index={index}
+                            data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []} />
+                    </div>
+
+                    <div className="footer">
+                        <button
+                            disabled={index === 0}
+                            onClick={() => handlePrev()}
+                            className="btn btn-warning">PREV</button>
+                        <button
+                            disabled={index === dataQuiz.length - 1}
+                            onClick={() => handleNext()}
+                            className="btn btn-success">NEXT</button>
+                        <button
+                            onClick={() => setIsShowConfirmModal(true)}
+                            className="btn btn-danger">FINISH</button>
+                    </div>
+                </div>
+
+                <div className="content-right">
+                    <QuestionOverview
+                        dataQuiz={dataQuiz}
+                        handleFinishQuiz={handleFinishQuiz}
+                        isFinish={isFinish}
+                        setIndex={setIndex}
+                    />
+                </div>
             </div>
 
             <ModalConfirmSubmit

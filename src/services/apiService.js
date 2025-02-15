@@ -119,6 +119,10 @@ const doLogOut = (email, refresh_token) => {
     })
 }
 
+const getOverview = () => {
+    return axios.get(`api/v1/overview`)
+}
+
 export {
     postCreateNewUserService, getAllUserService,
     putUpdateUserService, deleteUserService,
@@ -128,5 +132,5 @@ export {
     getAllQuizForAdminService, putEditQuizService,
     deleteQuizService, postCreateNewQuestionForQuiz,
     postCreateNewAnswerForQuestion, postAssignQuizToUser,
-    getQuizWithQA, postUpsertQA, doLogOut
+    getQuizWithQA, postUpsertQA, doLogOut, getOverview
 }
