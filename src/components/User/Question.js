@@ -56,8 +56,6 @@ const Question = (props) => {
                                     <input
                                         className='form-check-input'
                                         type='checkbox'
-                                        // checked={item.isSelected}
-                                        // onChange={() => handleChangeCheckbox(data.questionId, item.id)}
                                         hidden
                                     />
                                     <label className='form-check-label'>

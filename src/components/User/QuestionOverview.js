@@ -13,7 +13,7 @@ const QuestionOverview = (props) => {
     }, [dataQuiz]);
 
     const onTimeUp = () => {
-        handleFinishQuiz()
+        handleFinishQuiz();
     }
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const QuestionOverview = (props) => {
             setCount(0)
         }
 
-        if (count === 0) {
+        if (count === 0 && isFinish === false) {
             onTimeUp();
             return
         }

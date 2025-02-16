@@ -48,11 +48,11 @@ const QuizTable = (props) => {
                         listQuizz.map((item, index) => {
                             return (
                                 <tr key={index}>
-                                    <th style={{ textAlign: "center" }}>{item.id}</th>
-                                    <td>{item.name}</td>
-                                    <td>{item.description}</td>
-                                    <td style={{ textAlign: "center" }}>{item.difficulty}</td>
-                                    <td style={{ textAlign: "center" }}>
+                                    <td style={{ textAlign: "center", verticalAlign: "middle" }}>{item.id}</td>
+                                    <td style={{ verticalAlign: "middle" }}>{item.name}</td>
+                                    <td style={{ verticalAlign: "middle" }}> {item.description}</td>
+                                    <td style={{ textAlign: "center", verticalAlign: "middle" }}>{item.difficulty}</td>
+                                    <td style={{ textAlign: "center", verticalAlign: "middle" }}>
                                         <button
                                             className="btn btn-warning"
                                             onClick={() => handelEditQuiz(item)}

@@ -21,7 +21,6 @@ const DetailQuiz = (props) => {
     const [index, setIndex] = useState(0);
     const [isShowConfirmModal, setIsShowConfirmModal] = useState(false);
     const [isShowModalResult, setIsShowModalResult] = useState(false);
-    const [defaultDataQuiz, setDefaultDataQuiz] = useState([]);
     const [dataResultModal, setDataModalResult] = useState({});
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -57,7 +56,6 @@ const DetailQuiz = (props) => {
                 .value();
 
             setDataQuiz(data);
-            setDefaultDataQuiz(data);
         }
     }
 
@@ -123,8 +121,9 @@ const DetailQuiz = (props) => {
 
         let res = await postSubmitQuizService(payload);
 
+
         if (res && res.EC === 0) {
-            setDataQuiz(defaultDataQuiz);
+            console.log(res)
             setDataModalResult({
                 countCorrect: res.DT.countCorrect,
                 countTotal: res.DT.countTotal,
