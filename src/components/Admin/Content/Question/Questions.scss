@@ -1,0 +1,159 @@
+.questions-container {
+    padding: 0 20px;
+
+    .title {
+        font-size  : 2em;
+        font-weight: 600;
+    }
+
+    .add-new-question {
+        .head-control {
+            display    : flex;
+            gap        : 20px;
+            align-items: center;
+
+            .btn-add-new {
+                button {
+                    display         : flex;
+                    align-items     : center;
+                    gap             : 10px;
+                    border-radius   : 5px;
+                    background-color: rgb(226, 251, 255);
+                    padding         : 5px 20px;
+                }
+            }
+
+            .btn-save {
+                margin-left: auto;
+
+                button {
+                    display         : flex;
+                    align-items     : center;
+                    justify-content : center;
+                    gap             : 10px;
+                    border-radius   : 5px;
+                    border          : none;
+                    outline         : none;
+                    background-color: rgb(9, 59, 0);
+                    padding         : 20px 110px;
+                    color           : white;
+                    font-weight     : 600;
+
+                    .btn-save-icon {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+
+        .each-question {
+            margin: 20px 0 40px 0;
+
+            legend {
+                font-size: 1.3em;
+            }
+
+            .question-content {
+                display: flex;
+                gap    : 20px;
+
+                .question-answer {
+                    width: 70%;
+
+                    span {
+                        font-size  : 1.2em;
+                        font-weight: 600;
+                        margin-left: 10px;
+                    }
+
+                    .answer {
+                        padding    : 10px;
+                        display    : flex;
+                        align-items: center;
+                        gap        : 20px;
+
+                        .check-right-answer {
+                            transform: scale(1.5);
+                            outline  : none;
+                        }
+
+                        .answer-child {
+                            width: 80%;
+                        }
+
+                        .btn-delete-answer {
+                            color    : red;
+                            cursor   : pointer;
+                            transform: scale(1.2);
+                        }
+                    }
+
+                    .btn-add-answer {
+                        margin: 0 auto;
+                        width : 30%;
+
+                        button {
+                            display         : flex;
+                            align-items     : center;
+                            justify-content : center;
+                            gap             : 5px;
+                            width           : 100%;
+                            padding         : 10px;
+                            border-radius   : 5px;
+                            background-color: transparent;
+                        }
+                    }
+                }
+
+                .more-action {
+                    border-left : 1px solid #ccc;
+                    padding-left: 20px;
+
+                    .upload-image {
+                        border       : 1px solid #ccc;
+                        width        : fit-content;
+                        padding      : 10px;
+                        border-radius: 8px;
+                        height       : fit-content;
+
+                        .img-preview {
+                            border         : 1px dashed rgb(163, 163, 163);
+                            height         : 150px;
+                            display        : flex;
+                            justify-content: center;
+                            align-items    : center;
+
+                            span {
+                                color: #6d6d6d;
+                            }
+
+                            img {
+                                width : 100%;
+                                height: 100%;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .btn-delete-question {
+                        padding: 20px 0;
+
+                        button {
+                            display         : flex;
+                            align-items     : center;
+                            justify-content : center;
+                            gap             : 10px;
+                            width           : 100%;
+                            height          : 50px;
+                            background-color: rgb(221, 31, 31);
+                            border          : none;
+                            outline         : none;
+                            color           : white;
+                            border-radius   : 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

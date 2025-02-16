@@ -1,0 +1,50 @@
+{
+    "homepage": {
+        "title1": "Think you're smart?",
+        "title2": "Prove it... or guess again!",
+        "title3": "Dive into our ultimate quiz challenge where only the sharpest minds survive! Think fast, choose wisely, and see if you have what it takes to outsmart the game. Are you a genius or just lucky?",
+        "started": "Let's Find Out!",
+        "doQuiz": "Doing Quiz Now!"
+    },
+
+    "header": {
+        "homepage": "Home",
+        "quiz" : "My Quiz",
+        "signIn" : "Sign In",
+        "signUp" : "Sign Up",
+        "management" : "Management",
+        "profile" : "Profile",
+        "logOut" : "Log out"
+    },
+
+    "signIn" : {
+        "signIn" : "Sign In",
+        "signin" : "Sign In",
+        "password" : "Password",
+        "forgot" : "Forgot password?",
+        "login" : "Sign In",
+        "toHome" : "Back to home",
+        "signUp" : "Sign Up",
+        "signup" : "Sign Up",
+        "noAccount" : "Don't have account?",
+        "hasAccount" : "You already have an account?",
+        "username" : "Username",
+        "register" : "Sign Up"
+    },
+
+    "sideBar": {
+        "homepage" : "Home",
+        "management" : "Management",
+        "user" : "User Management",
+        "quiz" : "Quiz Management",
+        "question" : "Q&A Management",
+        "dashBoard" : "Dashboard"
+    },
+
+    "quiz" : {
+        "start" : "Start Now",
+        "quiz" : "Quiz",
+        "noQuiz" : "You don't have any quiz now"
+    }
+
+}

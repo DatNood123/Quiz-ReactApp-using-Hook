@@ -1,12 +1,13 @@
 .navbar {
-    z-index    : 10;
-    padding-top: 20px !important;
+    z-index         : 10;
+    padding-top     : 20px !important;
+    background-color: transparent;
 
     .container {
-
         .navbar-brand {
-            font-weight: 600;
-            font-size  : 28px;
+            font-weight: 800;
+            font-size  : 2em;
+            color      : white;
         }
 
         .collapse {
@@ -16,10 +17,20 @@
                 padding-left: 20px;
 
                 .nav-link {
+                    color: rgb(186, 184, 184);
+
                     &.active {
-                        color      : red;
+                        color      : rgb(255, 255, 255);
                         font-weight: 600;
                     }
+                }
+
+                #basic-nav-dropdown {
+                    color: white;
+                }
+
+                #language-nav-dropdown {
+                    color: white;
                 }
 
                 .btn-signup {
@@ -34,6 +45,8 @@
                     transition      : transform 0.3s ease-in;
                     will-change     : transform;
                     height          : 40px;
+                    width           : 120px;
+                    font-weight     : 600;
 
                     &:hover {
                         transform: scale(1.1);
@@ -41,7 +54,9 @@
                 }
 
                 .btn-login {
-                    border       : 2px solid black;
+                    font-weight  : 600;
+                    width        : 120px;
+                    border       : 3px solid rgb(255, 119, 0);
                     border-radius: 10px;
                     padding      : 0 20px;
                     outline      : none;

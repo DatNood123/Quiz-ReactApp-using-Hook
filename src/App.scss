@@ -6,15 +6,26 @@ body {
     sans-serif;
   -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow               : hidden;
 }
 
-@media (min-width: 1350px) {
+@media (min-width: 1250px) {
 
   .container,
   .container-lg,
   .container-md,
   .container-sm,
   .container.xl {
-    max-width: 1450px !important;
+    max-width: 1300px !important;
   }
+}
+
+.change-language {
+  .dropdown-toggle::after {
+    display: none !important;
+  }
+}
+
+.app-container {
+  height: 100vh;
 }

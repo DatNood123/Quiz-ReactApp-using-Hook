@@ -1,0 +1,61 @@
+.dashboard-container {
+    padding: 0 20px;
+
+    .title {
+        font-size    : 2em;
+        font-weight  : 600;
+        margin-bottom: 20px;
+    }
+
+    .content {
+        display: flex;
+        gap    : 20px;
+
+        .content-left {
+            width    : 50%;
+            display  : flex;
+            flex-wrap: wrap;
+
+            .child {
+                width  : 50%;
+                height : 280px;
+                padding: 10px;
+
+                .border-child {
+                    height         : 100%;
+                    width          : 100%;
+                    border-radius  : 15px;
+                    border         : 3px solid rgb(1, 65, 1);
+                    display        : flex;
+                    flex-direction : column;
+                    align-items    : center;
+                    justify-content: center;
+
+                    .child-number {
+                        font-size  : 2em;
+                        font-weight: 600;
+                    }
+
+                    .child-title {
+                        font-size: 1.2em;
+                    }
+
+                    .child-detail {
+                        display       : flex;
+                        flex-direction: column;
+                        margin-top    : 20px;
+                    }
+                }
+            }
+        }
+
+        .content-right {
+            width  : 50%;
+            padding: 10px;
+
+            .chart {
+                height: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,82 @@
+.profile-modal-container {
+    .email-username {
+        display: flex;
+        gap    : 20px;
+
+        .email {
+            width: 50%;
+        }
+
+        .username {
+            width: 50%;
+        }
+
+    }
+
+    .avatar-content {
+        display       : flex;
+        margin-top    : 20px;
+        gap           : 10px;
+        flex-direction: column;
+        border        : 1px solid #ccc;
+        padding       : 20px;
+        border-radius : 5px;
+
+        .change-avatar {
+            width: 30%;
+
+            label {
+                padding      : 10px 20px;
+                border       : 2px solid #ccc;
+                border-radius: 8px;
+                cursor       : pointer;
+            }
+        }
+
+        .avatar {
+            width : 70%;
+            height: 200px;
+
+            img {
+                width : auto;
+                height: 100%;
+            }
+        }
+    }
+
+    .btn-save {
+        padding-top    : 20px;
+        display        : flex;
+        justify-content: end;
+
+        button {
+            border-radius   : 5px;
+            padding         : 5px 40px;
+            background-color: rgb(2, 50, 2);
+            color           : white;
+        }
+    }
+
+    .change-password-container {
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+
+        .input {
+            width: 60%;
+
+            .input-content {
+                display        : flex;
+                position       : relative;
+                justify-content: end;
+                align-items    : center;
+
+                .icon {
+                    position: absolute;
+                    right   : 10px;
+                }
+
+            }
+        }
+    }
+}

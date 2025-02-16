@@ -10,12 +10,14 @@ import {
     SidebarContent,
 } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { FaTachometerAlt, FaGem, FaGithub, FaRegLaughWink } from 'react-icons/fa';
+import { FaHome, FaGem, FaGithub } from 'react-icons/fa';
+import { IoMdSettings } from "react-icons/io";
 import sidebarBg from '../../assets/bg2.jpg';
+import { useTranslation } from 'react-i18next';
 
 const SideBar = (props) => {
-
-    const { image, collapsed, rtl, toggled, handleToggleSidebar } = props;
+    const { t } = useTranslation();
+    const { collapsed, toggled, handleToggleSidebar } = props;
     return (
         <>
             <ProSidebar
@@ -45,23 +47,35 @@ const SideBar = (props) => {
                 <SidebarContent>
                     <Menu iconShape="circle">
                         <MenuItem
+                            icon={<FaHome />}
+                        >
+                            {t('sideBar.homepage')}
+                            <Link to='/' />
+                        </MenuItem>
+
+                        <MenuItem
                             icon={<FaGem />}
                         >
-                            Dashboard
+                            {t('sideBar.dashBoard')}
                             <Link to='/admins' />
                         </MenuItem>
 
                         <SubMenu
-                            title={"Quản lý"}
-                            icon={<FaRegLaughWink />}
+                            title={t('sideBar.management')}
+                            icon={<IoMdSettings />}
                         >
                             <MenuItem>
-                                Quản lý người dùng
+                                {t('sideBar.quiz')}
+                                <Link to='/admins/manage-quizzes' />
+                            </MenuItem>
+                            <MenuItem>
+                                {t('sideBar.question')}
+                                <Link to='/admins/manage-questions' />
+                            </MenuItem>
+                            <MenuItem>
+                                {t('sideBar.user')}
                                 <Link to='/admins/manage-users' />
                             </MenuItem>
-                            <MenuItem>Quản lý câu hỏi</MenuItem>
-                            <MenuItem>Quản lý câu trả lời</MenuItem>
-
                         </SubMenu>
                     </Menu>
                 </SidebarContent>

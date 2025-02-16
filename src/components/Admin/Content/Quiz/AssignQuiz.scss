@@ -1,0 +1,42 @@
+.assign-quiz-container {
+    .assign-quiz-content {
+        display: flex;
+        gap    : 20px;
+
+        .list-quizzes {
+            width: 50%;
+
+            .text-title {
+                text-align : center;
+                font-weight: 800;
+                padding    : 10px;
+            }
+        }
+
+        .list-users {
+            width: 50%;
+
+            .text-title {
+                text-align : center;
+                font-weight: 800;
+                padding    : 10px;
+            }
+        }
+    }
+
+    .btn-assign {
+        margin-top     : 50px;
+        display        : flex;
+        justify-content: center;
+
+        button {
+            width           : 50%;
+            height          : 40px;
+            border-radius   : 8px;
+            border          : none;
+            outline         : none;
+            background-color: rgb(245, 163, 0);
+            font-weight     : 600;
+        }
+    }
+}

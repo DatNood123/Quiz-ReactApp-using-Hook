@@ -1,0 +1,167 @@
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+.login-container {
+    height           : 100vh;
+    display          : flex;
+    flex-direction   : column;
+    align-items      : center;
+    background-image : url("../../assets/background-login.jpg");
+    background-size  : cover;
+    background-repeat: no-repeat;
+
+    .login-header {
+        text-align : center;
+        display    : flex;
+        margin-left: auto;
+        padding    : 20px 120px 0 0;
+        align-items: center;
+        gap        : 10px;
+        color      : white;
+
+        button {
+            background-color: #393535;
+            border          : 3px solid #ffffff;
+            outline         : none;
+            border-radius   : 8px;
+            padding         : 8px 16px;
+            font-size       : 1em;
+            color           : white;
+            margin-right    : 20px;
+            transition      : transform 0.4s ease;
+            will-change     : transform;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .title {
+        font-size    : 5em;
+        font-weight  : 800;
+        text-align   : center;
+        margin-bottom: 20px;
+        color        : white;
+    }
+
+    .content-form {
+        border         : 1px solid #ccc;
+        box-shadow     : 2px 2px 2px #5e002340;
+        border-radius  : 15px;
+        backdrop-filter: blur(50px);
+        padding        : 20px 40px;
+        width          : 30%;
+
+        .header {
+            text-align   : center;
+            font-size    : 2.5em;
+            margin-bottom: 40px;
+            font-weight  : 600;
+            color        : white;
+        }
+
+        .form-content {
+            display       : flex;
+            flex-direction: column;
+            gap           : 15px;
+
+            span {
+                user-select: none;
+                color      : rgb(255, 255, 255);
+                cursor     : pointer;
+            }
+
+            .form-group {
+                .input {
+                    display    : flex;
+                    align-items: center;
+                    position   : relative;
+
+                    .icon {
+                        position : absolute;
+                        font-size: 1.2em;
+                        right    : 10px;
+                        color    : #ffffff;
+                    }
+
+                    .icon-password {
+                        position : absolute;
+                        font-size: 1.2em;
+                        right    : 10px;
+                        color    : #ffffff;
+                        cursor   : pointer;
+                    }
+
+                    .form-control {
+                        margin-bottom   : 10px;
+                        height          : 2.8em;
+                        outline         : none I !important;
+                        box-shadow      : none !important;
+                        border-top      : none;
+                        border-left     : none;
+                        border-right    : none;
+                        color           : white;
+                        border-bottom   : 3px solid #ffffff;
+                        background-color: transparent !important;
+
+                        &::placeholder {
+                            color: rgba(255, 255, 255, 0.805);
+                        }
+                    }
+                }
+            }
+
+            .btn-login {
+                button {
+                    width           : 100%;
+                    border          : 3px solid white;
+                    outline         : none;
+                    background-color: rgb(30, 29, 29);
+                    border-radius   : 8px;
+                    padding         : 10px 0;
+                    font-size       : 1.2em;
+                    display         : flex;
+                    justify-content : center;
+                    align-items     : center;
+
+                    &:disabled {
+                        background: #393535;
+                        cursor    : no-drop;
+
+                        span {
+                            display: none;
+                        }
+                    }
+
+                    span {
+                        color: white;
+                    }
+
+                    .loadingIcon {
+                        font-size: 1.3em;
+                        animation: spin 1.5s infinite linear;
+                        color    : rgb(255, 255, 255);
+                    }
+                }
+            }
+
+            .back-to-home {
+                color          : rgb(255, 255, 255);
+                font-weight    : 600;
+                display        : flex;
+                align-items    : center;
+                justify-content: center;
+                gap            : 5px;
+                cursor         : pointer;
+            }
+        }
+    }
+}

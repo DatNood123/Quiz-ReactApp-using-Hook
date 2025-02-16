@@ -11,6 +11,13 @@
         width: 100%;
 
         .admin-header {
+            height         : 60px;
+            display        : flex;
+            justify-content: space-between;
+            padding        : 20px;
+            align-items    : center;
+            border-bottom  : 1px solid #ccc;
+
             .btn-show-hide {
                 display        : flex;
                 justify-content: center;
@@ -19,9 +26,21 @@
                 width          : 50px;
                 border         : 2px solid rgb(45, 5, 5);
                 border-radius  : 8px;
-                margin-top     : 10px;
-                margin-left    : 10px;
                 cursor         : pointer;
+            }
+
+            .action {
+                display: flex;
+                gap    : 20px;
+            }
+        }
+
+        .admin-main {
+            height: calc(100vh - 60px);
+
+            .user-paginate {
+                display        : flex;
+                justify-content: center;
             }
         }
     }
