@@ -2,10 +2,15 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function ModalResult(props) {
-    const { show, setShow, dataResultModal } = props;
+    const { show, setShow, dataResultModal, setIsShowAnswer } = props;
     const handleClose = () => {
         setShow(false)
     };
+
+    const handleShowAnswer = () => {
+        setIsShowAnswer(true);
+        handleClose()
+    }
 
     return (
         <>
@@ -25,7 +30,7 @@ function ModalResult(props) {
                 <Modal.Footer>
                     <Button
                         variant="success"
-                        onClick={handleClose}>
+                        onClick={handleShowAnswer}>
                         Hiện đáp án
                     </Button>
                     <Button

@@ -24,6 +24,7 @@ const DetailQuiz = (props) => {
     const [dataResultModal, setDataModalResult] = useState({});
     const navigate = useNavigate();
     const { t } = useTranslation();
+    const [isShowAnswer, setIsShowAnswer] = useState(false);
 
     useEffect(() => {
         fetchQuestion();
@@ -45,6 +46,7 @@ const DetailQuiz = (props) => {
                             questionDescription = item.description;
                             image = item.image;
                         }
+                        item.answers.isCorrect = false;
                         item.answers.isSelected = false;
                         answers.push(item.answers);
                     })
@@ -121,17 +123,34 @@ const DetailQuiz = (props) => {
 
         let res = await postSubmitQuizService(payload);
 
-
         if (res && res.EC === 0) {
-            console.log(res)
             setDataModalResult({
                 countCorrect: res.DT.countCorrect,
                 countTotal: res.DT.countTotal,
                 quizData: res.DT.quizData
             })
+
+            getRightAnwsers(res.DT.quizData);
             setIsShowModalResult(true);
             setIsFinish(true)
         }
+    }
+
+    const getRightAnwsers = (dataRight) => {
+        let dataQuizClone = _.cloneDeep(dataQuiz);
+        if (dataQuiz && dataRight) {
+            for (let i = 0; i < dataQuizClone.length; i++) {
+                for (let j = 0; j < dataQuizClone[i].answers.length; j++) {
+                    if (dataQuizClone[i] && dataQuizClone[i].answers[j] && dataRight[i].systemAnswers) {
+                        if (dataQuizClone[i].answers[j].id == dataRight[i].systemAnswers[0].id) {
+                            dataQuizClone[i].answers[j].isCorrect = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        setDataQuiz(dataQuizClone)
     }
 
     return (
@@ -160,6 +179,8 @@ const DetailQuiz = (props) => {
 
                     <div className="quiz-content">
                         <Question
+                            isShowAnswer={isShowAnswer}
+                            isFinish={isFinish}
                             handleCheckbox={handleCheckbox}
                             index={index}
                             data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []} />
@@ -175,6 +196,7 @@ const DetailQuiz = (props) => {
                             onClick={() => handleNext()}
                             className="btn btn-success">NEXT</button>
                         <button
+                            disabled={isFinish}
                             onClick={() => setIsShowConfirmModal(true)}
                             className="btn btn-danger">FINISH</button>
                     </div>
@@ -200,6 +222,7 @@ const DetailQuiz = (props) => {
                 show={isShowModalResult}
                 setShow={setIsShowModalResult}
                 dataResultModal={dataResultModal}
+                setIsShowAnswer={setIsShowAnswer}
             />
         </div>
     )

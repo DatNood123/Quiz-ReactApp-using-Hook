@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
 import Lightbox from 'react-awesome-lightbox';
+import { TiTick } from "react-icons/ti";
+import { FaTimes } from "react-icons/fa";
+
 
 const Question = (props) => {
-    const { data, index } = props;
+    const { data, index, isFinish, isShowAnswer } = props;
     const [isPreviewImage, setIsPreviewImage] = useState(false)
 
     const handleChangeCheckbox = (qId, aId) => {
@@ -40,8 +43,8 @@ const Question = (props) => {
                 </div>
             }
 
-            <div className='question'>Question {index + 1}: {data.questionDescription}?</div>
-            <div className='answer'>
+            <div className='question'>Question {index + 1}: {data.questionDescription}</div>
+            <div className='answer' style={isFinish ? { pointerEvents: "none" } : { pointerEvents: "auto" }}>
                 {data.answers && data.answers.length > 0 &&
                     data.answers.map((item, index) => {
                         const isCheck = item.isSelected;
@@ -49,7 +52,9 @@ const Question = (props) => {
                             <div
                                 key={index}
                                 className='question-child'
-                                style={isCheck === true ? { backgroundColor: "#65eef7" } : { backgroundColor: "transparent" }}
+                                style={
+                                    isCheck ? { backgroundColor: "#65eef7" } : { backgroundColor: "transparent" }
+                                }
                                 onClick={() => handleChangeCheckbox(data.questionId, item.id)}
                             >
                                 <div className='form-check'>
@@ -62,6 +67,9 @@ const Question = (props) => {
                                         {String.fromCharCode(65 + index)}. {item.description}
                                     </label>
                                 </div>
+
+                                {isShowAnswer && isFinish && item.isCorrect && <TiTick className='correct' />}
+                                {isShowAnswer && isFinish && item.isCorrect === false && <FaTimes className='incorrect' />}
                             </div>
                         )
                     })

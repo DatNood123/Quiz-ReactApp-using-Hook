@@ -47,6 +47,19 @@
                         padding    : 8px;
                         border     : 1px solid #ccc;
                         user-select: none;
+                        display    : flex;
+                        gap        : 20px;
+                        align-items: center;
+
+                        .correct {
+                            color    : #04571e;
+                            font-size: 23px;
+                        }
+
+                        .incorrect {
+                            color    : #dd1705;
+                            font-size: 18px;
+                        }
                     }
                 }
 
