@@ -12,6 +12,7 @@ import {
     getAllQuizForAdminService,
     getQuizWithQA, postUpsertQA
 } from "../../../../services/apiService";
+import { useImmer } from "use-immer";
 
 const UpdateQAQuiz = (props) => {
 
@@ -35,7 +36,7 @@ const UpdateQAQuiz = (props) => {
             ]
         }
     ]
-    const [questions, setQuestions] = useState(initQuestion)
+    const [questions, setQuestions] = useImmer(initQuestion)
 
     const fectchQuiz = async () => {
         let res = await getAllQuizForAdminService();
@@ -115,14 +116,12 @@ const UpdateQAQuiz = (props) => {
         }
 
         if (type === 'REMOVE') {
-            let questionClone = _.cloneDeep(questions);
-            questionClone = questionClone.filter(item => item.id !== id);
-            setQuestions(questionClone);
+            let newListQuestion = questions.filter(item => item.id !== id);
+            setQuestions(newListQuestion);
         }
     }
 
     const handleAddOrRemoveAnswer = (type, qId, aId) => {
-        let questionsClone = _.cloneDeep(questions);
         if (type === 'ADD') {
             const newAnswer =
             {
@@ -131,65 +130,64 @@ const UpdateQAQuiz = (props) => {
                 isCorrect: false
             }
 
-            let index = questionsClone.findIndex(item => item.id === qId);
-            questionsClone[index].answers.push(newAnswer);
-            setQuestions(questionsClone);
+            setQuestions((draft) => {
+                let index = draft.findIndex(item => item.id === qId);
+                draft[index].answers.push(newAnswer)
+            })
         }
 
         if (type === 'REMOVE') {
-            let index = questionsClone.findIndex(item => item.id === qId);
-            questionsClone[index].answers =
-                questionsClone[index].answers.filter(item => item.id !== aId);
-
-            setQuestions(questionsClone);
+            setQuestions((draft) => {
+                let index = draft.findIndex(item => item.id === qId);
+                draft[index].answers =
+                    questions[index].answers.filter(item => item.id !== aId);
+            })
         }
 
     }
 
     const handleOnChange = (type, questionId, value) => {
         if (type === 'QUESTION') {
-            let questionClone = _.cloneDeep(questions);
-            let index = questionClone.findIndex(item => item.id === questionId);
-            if (index > -1) {
-                questionClone[index].description = value;
-                setQuestions(questionClone);
-            }
-
+            setQuestions((draft) => {
+                let index = draft.findIndex(item => item.id === questionId);
+                if (index > -1) {
+                    draft[index].description = value;
+                }
+            })
         }
     }
 
     const handleOnChangeAnswer = (type, questionId, answerId, value) => {
-        let questionClone = _.cloneDeep(questions);
-        let index = questionClone.findIndex(item => item.id === questionId);
-        if (index > -1) {
-            questionClone[index].answers =
-                questionClone[index].answers.map(answer => {
-                    if (answer.id === answerId) {
-                        if (type === 'CHECKBOX') {
-                            answer.isCorrect = value;
+        setQuestions((draft) => {
+            let index = draft.findIndex(item => item.id === questionId);
+            if (index > -1) {
+                draft[index].answers =
+                    draft[index].answers.map(answer => {
+                        if (answer.id === answerId) {
+                            if (type === 'CHECKBOX') {
+                                answer.isCorrect = value;
+                            }
+
+                            if (type === 'INPUT') {
+                                answer.description = value;
+                            }
                         }
 
-                        if (type === 'INPUT') {
-                            answer.description = value;
-                        }
-                    }
-
-                    return answer;
-                })
-        }
-
-        setQuestions(questionClone)
+                        return answer;
+                    })
+            }
+        })
     }
 
     const handleOnChangFileQuestion = (questionId, event) => {
-        let questionClone = _.cloneDeep(questions);
-        let index = questionClone.findIndex(item => item.id === questionId);
-        if (index > -1 && event.target && event.target.files && event.target.files[0]) {
-            questionClone[index].imageFile = event.target.files[0];
-            questionClone[index].imageName = event.target.files[0].name;
-            questionClone[index].previewImage = URL.createObjectURL(event.target.files[0]);
-            setQuestions(questionClone);
-        }
+        setQuestions((draft) => {
+            let index = draft.findIndex(item => item.id === questionId);
+            if (index > -1 && event.target && event.target.files && event.target.files[0]) {
+                draft[index].imageFile = event.target.files[0];
+                draft[index].imageName = event.target.files[0].name;
+                draft[index].previewImage = URL.createObjectURL(event.target.files[0]);
+            }
+        })
     }
 
     const handlePreviewImage = (questionId) => {
